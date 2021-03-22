@@ -35,3 +35,19 @@ def search_results(request):
         message = "What images are you looking for?"
         return render(request, 'results.html',
                       {"message": message, "locations": locations, "categories": categories})
+
+
+def get_image_by_location(request, loc):
+    """
+    Handles search requests by location
+    """
+    photos = Image.filter_location(loc)
+    return render(request, 'locations.html', {"photos": photos, "locations": locations, "categories": categories})
+
+
+def get_image_by_category(request, cat):
+    """
+    Handles search requests by category
+    """
+    photos = Image.filter_category(cat)
+    return render(request, 'category.html', {"photos": photos, "locations": locations, "categories": categories})
