@@ -1,9 +1,20 @@
 from django.shortcuts import render
-from django.contrib import admin
-from django.urls import path, include
+from .models import Image
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('blog.urls')),
-]
-# Create your views here.
+global locations, categories
+locations = ["Metropolis", "Gotham", "Central City", "Avengers mansion", "Bifrost", "Wakanda"]
+categories = ["naruto", "dmc"]
+
+
+def index(request):
+    """
+    Handles requests for the homepage
+    renders index.html
+    """
+    title = 'Welcome'
+    photos = Image.get_all()
+    return render(request, 'index.html',
+                  {"title": title,
+                   "photos": photos,
+                   "locations": locations,
+                   "categories": categories})

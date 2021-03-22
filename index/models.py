@@ -36,7 +36,7 @@ class Category(models.Model):
     Image category model
     """
     CATEGORIES = (
-        ("DC", "DC"),
+        ("naruto", "dmc"),
         ("dmc", "naruto")
     )
     name = models.CharField(max_length=120, choices=CATEGORIES)
